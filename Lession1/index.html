@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>带你去旅行</title>
+
+    <style>
+
+        .main_title{text-align: center;background-color:lightcoral;color: darkgreen;font-size: 20px;width: 200px}
+        .sub_content{text-align: center;background-color: lightcyan;color: darkred;font-size: 15px;width: 200px}
+    </style>
+</head>
+<body>
+    <h1>Welcome,this is alexander</h1>
+    <h2 style="color: red"> Today is Friday！！！Work Hard!!! Live Hard!!!</h2>
+    <!-- 这是模板语言 两个大括号 用于后端数据的显示-->
+    <!--{{disk}}-->
+    <!-- 用tb 进行展示-->
+
+    <h3> 远程文件管理系统 coder By AlexanderYeah</h3>
+    <table>
+        <tr>
+            <th class="main_title">名称</th>
+            <th class="main_title">修改日期</th>
+            <th class="main_title">路径</th>
+
+        </tr>
+
+        <!-- 使用模板语言 循环展示 传进来的数据 -->
+        {% for item in disk %}
+        <tr>
+            <td class="sub_content">{{ item['name'] }}</td>
+            <td class="sub_content">{{ item['time'] }}</td>
+            <td class="sub_content">{{ item['type'] }}</td>
+
+
+        </tr>
+
+        {% end %}
+
+    </table>
+
+</body>
+</html>
