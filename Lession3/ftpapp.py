@@ -38,10 +38,10 @@ class MainPageHandler(web.RequestHandler):
                 }
                 # 判断是否路径 还是文件
                 if os.path.isfile(temp_path):
-                    temp['is_path'] = True;
+                    temp['is_path'] = False;
                     temp['type'] = '文件';
                 else:
-                    temp['is_path'] = False;
+                    temp['is_path'] = True;
                     temp['type'] = '文件夹';
 
                 # 放进disk 中
@@ -66,7 +66,9 @@ class MainPageHandler(web.RequestHandler):
 class DownLoadHandler(web.RequestHandler):
     def get(self, *args, **kwargs):
         path = self.get_argument('path',default=None);
+        print("download/path-%s", path);
         if path:
+
             with open(path,'rb') as f:
                 # 不停的读取指定的文件，一直读取完毕 进行返回
                 while True:
@@ -75,6 +77,30 @@ class DownLoadHandler(web.RequestHandler):
                         self.write(data);
                     else:
                         break;
+
+
+# 删除模块 处理逻辑就是获取路径 ，判断是否是一个文件，是的话，可以删除，不是的话，提醒用户，不让删除
+class DeleteHandler(web.RequestHandler):
+    def get(self, *args, **kwargs):
+        path = self.get_argument('path',default=None);
+        if path:
+            if os.path.exists(path):
+                if os.path.isfile(path):
+                    # 获取当前文件的父路径，以便于 删除文件之后的重定向
+                    parrent_path = os.path.dirname(path);
+
+                    if os.path.isdir(path):
+                        os.removedirs(path);
+                    else:
+                        os.remove(path);
+                    # redirect 重定向
+                    self.redirect('/index?path=%s' % parrent_path);
+                else:
+                    self.write("不要直接删除文件夹");
+        else:
+            self.write("文件不存在");
+
+
 
 """
     路由系统
@@ -85,7 +111,9 @@ application = web.Application([
     # 首页的话 跳转首页操作
     (r"/index",MainPageHandler),
     # 下载的话 进行下载操作
-     (r"/download",DownLoadHandler),
+    (r"/download",DownLoadHandler),
+    # 删除操作
+    (r"/delete",DeleteHandler),
 
 ])
 """

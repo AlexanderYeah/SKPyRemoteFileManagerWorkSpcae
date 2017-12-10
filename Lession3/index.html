@@ -24,6 +24,7 @@
             <th class="main_title">修改日期</th>
             <th class="main_title">路径</th>
             <th class="main_title">类型</th>
+            <th class="main_title">操作</th>
 
         </tr>
 
@@ -34,11 +35,13 @@
             {%  if item['is_path'] %}
             <td class="sub_content"><a href="/index?path={{ item['path'] }}">{{ item['name'] }}</a> </td>
             {% else %}
-            <td class="sub_content"><a href="/download{{ item['path'] }}" download="{{ item['name'] }}">{{ item['name'] }}</a> </td>
+            <td class="sub_content"><a href="/download?path={{ item['path'] }}" download="{{ item['path'] }}">{{ item['name'] }}</a> </td>
             {% end %}
             <td class="sub_content">{{ item['time'] }}</td>
             <td class="sub_content">{{ item['path'] }} </td>
             <td class="sub_content">{{ item['type'] }}</td>
+            <!-- 删除按钮的操作 -->
+            <td class="sub_content"><a href="/delete?path={{ item['path'] }}"> <button>删除</button> </a></td>
 
 
         </tr>
