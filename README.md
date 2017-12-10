@@ -6,5 +6,5 @@ Use tornado to create fake FTP Demo
 https://github.com/AlexanderYeah/SKPyRemoteFileManagerWorkSpcae/blob/master/Lession2/lession2.md)   
 截至目前。。。就是长这个样子。。。
 <img src="https://github.com/AlexanderYeah/SKPyRemoteFileManagerWorkSpcae/blob/master/Lession2/lession2.png" style="width:50px;height:80px"/>
-
+3 -- 12.10 号 Lession3 增加了删除 和下载操作，very simple .... ![✈️✈️✈️✈️✈️ 飞机票](https://github.com/AlexanderYeah/SKPyRemoteFileManagerWorkSpcae/blob/master/Lession3/lession3.md) 
 
