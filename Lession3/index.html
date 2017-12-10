@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alexander Coding Class</title>
+
+    <style>
+
+        .main_title{text-align: center;background-color:lightcoral;color: darkgreen;font-size: 20px;width: 200px}
+        .sub_content{text-align: center;background-color: lightcyan;color: darkred;font-size: 15px;width: 200px}
+    </style>
+</head>
+<body>
+    <h1>Welcome,this is alexander</h1>
+    <h2 style="color: red"> Today is Friday！！！Work Hard!!! Live Hard!!!</h2>
+    <!-- 这是模板语言 两个大括号 用于后端数据的显示-->
+    <!--{{disk}}-->
+    <!-- 用tb 进行展示-->
+
+    <h3> 远程文件管理系统 Coding By AlexanderYeah</h3>
+    <table>
+        <tr>
+            <th class="main_title">名称</th>
+            <th class="main_title">修改日期</th>
+            <th class="main_title">路径</th>
+            <th class="main_title">类型</th>
+
+        </tr>
+
+        <!-- 使用模板语言 循环展示 传进来的数据 -->
+        {% for item in disk %}
+        <tr>
+            <!-- 在此处作出判断 如果是路劲 点击进行打开,如果不是路径，点击进行下载-->
+            {%  if item['is_path'] %}
+            <td class="sub_content"><a href="/index?path={{ item['path'] }}">{{ item['name'] }}</a> </td>
+            {% else %}
+            <td class="sub_content"><a href="/download{{ item['path'] }}" download="{{ item['name'] }}">{{ item['name'] }}</a> </td>
+            {% end %}
+            <td class="sub_content">{{ item['time'] }}</td>
+            <td class="sub_content">{{ item['path'] }} </td>
+            <td class="sub_content">{{ item['type'] }}</td>
+
+
+        </tr>
+
+        {% end %}
+
+    </table>
+
+</body>
+</html>
